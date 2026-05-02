@@ -1,36 +1,20 @@
 const chai = require('chai')
-const sinon = require('sinon')
 global.expect = chai.expect
-const fs = require("fs");
-const jsdom = require('mocha-jsdom')
-const path = require('path')
-const babel = require('babel-core');
-const assert = require('assert');
 
-const html = fs.readFileSync(path.resolve(__dirname, '..', 'index.html'), 'utf-8')
-const js = fs.readFileSync(path.resolve(__dirname, '..', 'index.js'), 'utf-8')
+const {
+  numPointsScored, shoeSize, teamColors, teamNames,
+  playerNumbers, playerStats, bigShoeRebounds,
+  mostPointsScored, winningTeam, playerWithLongestName, doesLongNameStealATon
+} = require('../index.js')
 
-// Use Babel to transform the code
-const babelResult = babel.transform(js, {
-    presets: ['env']
-});
-
-const src = babelResult.code
-
-jsdom({
-    html, src
-});
-
-module.exports = {
-    assert,
-    chai,
-    sinon,
-    fs,
-    jsdom,
-    path,
-    babel,
-    html,
-    babelResult,
-    src,
-    js
-}
+global.numPointsScored = numPointsScored
+global.shoeSize = shoeSize
+global.teamColors = teamColors
+global.teamNames = teamNames
+global.playerNumbers = playerNumbers
+global.playerStats = playerStats
+global.bigShoeRebounds = bigShoeRebounds
+global.mostPointsScored = mostPointsScored
+global.winningTeam = winningTeam
+global.playerWithLongestName = playerWithLongestName
+global.doesLongNameStealATon = doesLongNameStealATon
